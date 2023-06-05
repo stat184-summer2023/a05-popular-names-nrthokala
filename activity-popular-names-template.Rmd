@@ -54,7 +54,10 @@ For steps 5-7, pick any FIVE names you wish. I choose Arnaldo, Ahmid, Nicho, Jen
 My answer here.... 
 
 ```{r}
-## Look at the data a few different ways (see Ch 9 for more).
+head(babynames)
+tail(babynames)
+
+# The variables are the name, sex, and popularity of the name of the individuals within the database, and the case is the year in which the individual was born
 
 
 ```
@@ -68,28 +71,27 @@ My answer here....
 
 ##### What variable(s) from the raw data table do not appear at all in the graph?
 
-My answer here.... 
+The variables that do not appear in the graph are sex and n (total number of individual names)
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
-My answer here.... 
+The variables in the graph that are similar to the variables in the raw data table include name, year, and popularity
 
 
 ### Step 4
 
 ##### Have cases been filtered out?
 
-My answer here.... 
+Yes the cases have been filtered out in both the raw data and the glyph ready table
 
 
 ##### Have cases been grouped and summarized within groups in any way?
 
-My answer here.... 
-
+Yes cases have been grouped and summarized by indiviual names as well as the most popular name for a paticular case, meaning a given year.
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
-My answer here.... 
+
 
 
 ### Step 5
@@ -106,6 +108,12 @@ Using the BabyNames data set, filter the data to display just the 5 names that y
 
 ```{r}
 ## Create my glyph ready data set here
+
+babynames %>% 
+  filter(name %in% c('Charles', 'James', 'John', 'George', 'Frank')) %>% 
+  filter(sex %in% "M") %>% 
+  filter(year > 1950) %>% 
+  ggplot(aes(year, n, color = name)) + geom_line()
 
 
 # inspect the result
@@ -131,7 +139,12 @@ If you prepared your `GlyphReadyForm` data set correctly, you should just be abl
 
 
 ```{r}
-#My code here 
+GlyphReadyForm %>%
+  ggplot(aes(x = year, y = total, group = name)) + 
+  geom_line(size = 1, alpha = 0.5, aes(color = name)) + 
+  ylab("Popularity") + 
+  xlab("Year") +
+  ggtitle("Popularity of Names Over Time")
 
 
 ```
