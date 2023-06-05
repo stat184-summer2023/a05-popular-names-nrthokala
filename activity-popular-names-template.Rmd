@@ -1,7 +1,7 @@
 ---
 title: 'Activity: Popular Names'
-author: "YOUR NAME HERE"
-date: "DUE DATE"
+author: "Neeraj Thokala"
+date: "6/5/23"
 output:
   html_document:
     df_print: paged
@@ -31,9 +31,13 @@ Assignment is worth a total of 10 points
 
 ```{r, message = F, warning = F}
 # load necessary packages
+install.packages('dcData')
 library(tidyverse)
 library(mosaic)
 library(esquisse)
+library(magrittr) 
+library(dplyr) 
+library(dcData)
 
 
 # Load the BabyNames data into RStudio environment (from dcData package)
@@ -57,7 +61,7 @@ My answer here....
 head(babynames)
 tail(babynames)
 
-# The variables are the name, sex, and popularity of the name of the individuals within the database, and the case is the year in which the individual was born
+# The variables are the name, sex, and proportion of the name of the individuals within the database, and the case is the year in which an individual with a particular name was born
 
 
 ```
@@ -75,7 +79,7 @@ The variables that do not appear in the graph are sex and n (total number of ind
 
 ##### What variable(s) in the graph are similar to corresponding variables in the raw data table, but might have been transformed in some way?
 
-The variables in the graph that are similar to the variables in the raw data table include name, year, and popularity
+The variables in the graph that are similar to the variables in the raw data table include name, year, and prop
 
 
 ### Step 4
@@ -87,11 +91,11 @@ Yes the cases have been filtered out in both the raw data and the glyph ready ta
 
 ##### Have cases been grouped and summarized within groups in any way?
 
-Yes cases have been grouped and summarized by indiviual names as well as the most popular name for a paticular case, meaning a given year.
+Yes cases have been grouped and summarized by indiviual names as well as the most proportion name for a paticular case, meaning how frequent a particular name is a given year.
 
 ##### Have any new variables been introduced?  If so, what the relationship between the new variables and existing variables?
 
-
+There are no new variables that have been introduced, the same variables as the example were used in my plot. the variables used we name, sex, and prop
 
 
 ### Step 5
@@ -99,6 +103,7 @@ Yes cases have been grouped and summarized by indiviual names as well as the mos
 
 Using the BabyNames data set, filter the data to display just the 5 names that you picked.  Then group the cases by year and name, and count how many total births per year were recorded for each of the names (regardless of sex).  
 
+#in order to do this I would first indentify what variables I want to pull from the existing variable pool, then I would list those variables using a filter() function to where I would use the group_by() function to sort the data be year and name, and then I would record the total number of births per year by using a summarise() function
 
 ### Step 6
 
@@ -116,10 +121,9 @@ babynames %>%
   ggplot(aes(year, n, color = name)) + geom_line()
 
 
+
 # inspect the result
 
-
-```
 
 
 ### Graph It!
